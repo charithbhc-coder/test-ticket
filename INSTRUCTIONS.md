@@ -91,4 +91,9 @@ We recommend deploying Angular frontends on **Vercel**, **Netlify**, or **Fireba
 
 ---
 
+## 4. Useful Guides
+
+- **[Power Automate Setup Guide](./POWER_AUTOMATE_SETUP.md)**: Detailed steps to connect Teams with threaded replies.
+- **[Final Walkthrough](./WALKTHROUGH.md)**: Overview of the architecture and final verification steps.
+
 **You're all set! Enjoy managing your Support Tickets.**
