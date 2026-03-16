@@ -1,0 +1,187 @@
+
+.dashboard-container {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.dashboard-card {
+  margin-top: 16px;
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.mat-mdc-card-header {
+  padding: 24px !important;
+  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(0,0,0,0.1);
+}
+
+.mat-mdc-card-title {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--text-color) !important;
+}
+
+/* Base table styles inside the card content container */
+::ng-deep .mat-mdc-card-content {
+  padding: 0 !important;
+  overflow-x: auto;
+}
+
+.ticket-table {
+  width: 100%;
+  background-color: transparent !important;
+}
+
+::ng-deep .ticket-table .mat-mdc-header-cell {
+  background-color: rgba(0,0,0,0.2) !important;
+  color: var(--text-muted) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em;
+  padding: 16px 24px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+::ng-deep .ticket-table .mat-mdc-cell {
+  color: var(--text-color) !important;
+  padding: 16px 24px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  font-size: 0.9rem !important;
+}
+
+::ng-deep .ticket-table .mat-mdc-row:hover {
+  background-color: rgba(255,255,255,0.03) !important;
+  transition: background-color 0.2s ease;
+}
+
+/* Status Chips styling */
+::ng-deep .mat-mdc-chip-set {
+  margin: 0 !important;
+}
+
+::ng-deep .mat-mdc-standard-chip {
+  --mdc-chip-label-text-color: white !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  padding: 4px 12px !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em;
+  min-height: 28px !important;
+}
+
+/* Reply Cell styling */
+.reply-cell {
+  min-width: 350px;
+}
+
+.reply-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Input Fields */
+::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: rgba(0,0,0,0.2) !important;
+  border-radius: 8px !important;
+}
+
+::ng-deep .mat-mdc-form-field-flex {
+  padding-top: 0 !important;
+}
+
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline {
+  display: none !important; /* Hide default outline to implement custom borders */
+}
+
+::ng-deep .mat-mdc-form-field-infix {
+  padding: 12px 16px !important;
+  min-height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  transition: all 0.2s;
+}
+
+::ng-deep .mat-mdc-form-field-infix:focus-within {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 1px var(--primary-color) !important;
+}
+
+::ng-deep .mat-mdc-input-element {
+  color: var(--text-color) !important;
+  caret-color: var(--primary-color) !important;
+}
+
+::ng-deep .mat-mdc-form-field-label {
+  color: var(--text-muted) !important;
+  top: 50% !important;
+  margin-top: -10px !important; /* Adjust based on padding */
+}
+
+/* Button */
+::ng-deep .mdc-button.mat-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  padding: 0 20px !important;
+  height: 42px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39) !important;
+  transition: all 0.2s ease !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+::ng-deep .mdc-button.mat-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.5) !important;
+}
+
+::ng-deep .mdc-button:disabled {
+  background: var(--border-color) !important;
+  color: var(--text-muted) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.reply-input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.resolved-reply {
+  color: var(--success-color);
+  font-weight: 500;
+  padding: 8px 12px;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  display: inline-block;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+}

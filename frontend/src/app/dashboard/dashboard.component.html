@@ -1,0 +1,75 @@
+<div class="dashboard-container">
+  <h1 class="dashboard-header">Support Center</h1>
+  
+  <mat-card class="dashboard-card">
+    <mat-card-content>
+      <!-- Show message if NO tickets exist -->
+      <div *ngIf="tickets.length === 0" class="empty-state">
+        <p>No support tickets found.</p>
+      </div>
+
+      <table *ngIf="tickets.length > 0" mat-table [dataSource]="tickets" class="ticket-table">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
+        </ng-container>
+
+        <!-- User Name Column -->
+        <ng-container matColumnDef="teamsUserName">
+          <th mat-header-cell *matHeaderCellDef> User </th>
+          <td mat-cell *matCellDef="let element">
+            <div style="font-weight: 600;">{{element.teamsUserName}}</div>
+          </td>
+        </ng-container>
+
+        <!-- Message Column -->
+        <ng-container matColumnDef="message">
+          <th mat-header-cell *matHeaderCellDef> Issue Details </th>
+          <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-chip [style.background-color]="element.status === 'OPEN' ? 'var(--danger-color)' : 'var(--success-color)'">
+              {{element.status}}
+            </mat-chip>
+          </td>
+        </ng-container>
+
+        <!-- Reply Column -->
+        <ng-container matColumnDef="reply">
+          <th mat-header-cell *matHeaderCellDef> Admin Action </th>
+          <td mat-cell *matCellDef="let element" class="reply-cell">
+            <!-- IF RESOLVED -->
+            <div *ngIf="element.status === 'RESOLVED'; else openReply">
+              <span class="resolved-reply">
+                <span style="opacity: 0.7; font-size: 0.8em; margin-right: 4px;">Replied:</span>
+                {{ element.reply }}
+              </span>
+            </div>
+            
+            <!-- IF OPEN -->
+            <ng-template #openReply>
+              <div *ngIf="element.status === 'OPEN'" class="reply-action">
+                <mat-form-field appearance="outline" class="reply-input" subscriptSizing="dynamic">
+                  <mat-label>Type your reply to resolve...</mat-label>
+                  <input matInput [(ngModel)]="replyTexts[element.id]" [disabled]="isSending[element.id]" (keyup.enter)="sendReply(element)">
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="sendReply(element)" [disabled]="isSending[element.id] || !replyTexts[element.id]">
+                  Resolve Issue
+                </button>
+              </div>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
