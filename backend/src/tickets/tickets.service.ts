@@ -11,11 +11,23 @@ export class TicketsService {
     private ticketsRepository: Repository<Ticket>,
   ) {}
 
-  async createTicket(message: string, teamsUserId: string, teamsUserName: string): Promise<any> {
+  async createTicket(
+    message: string,
+    teamsUserId: string,
+    teamsUserName: string,
+    senderEmail?: string,
+    messageId?: string,
+    channelId?: string,
+    teamId?: string,
+  ): Promise<any> {
     const ticket = this.ticketsRepository.create({
       message,
       teamsUserId,
       teamsUserName,
+      senderEmail,
+      messageId,
+      channelId,
+      teamId,
       status: 'OPEN',
     });
     const saved = await this.ticketsRepository.save(ticket);
@@ -30,12 +42,21 @@ export class TicketsService {
       order: {
         createdAt: 'DESC',
       },
-      select: ['id', 'message', 'teamsUserName', 'status', 'reply'],
+      select: [
+        'id',
+        'message',
+        'teamsUserName',
+        'senderEmail',
+        'status',
+        'reply',
+      ],
     });
   }
 
   async replyToTicket(ticketId: number, reply: string): Promise<any> {
-    const ticket = await this.ticketsRepository.findOne({ where: { id: ticketId }});
+    const ticket = await this.ticketsRepository.findOne({
+      where: { id: ticketId },
+    });
     if (!ticket) {
       throw new Error('Ticket not found');
     }
@@ -48,7 +69,9 @@ export class TicketsService {
     if (webhookUrl) {
       try {
         await axios.post(webhookUrl, {
-          teamsUserId: ticket.teamsUserId,
+          teamId: ticket.teamId,
+          channelId: ticket.channelId,
+          messageId: ticket.messageId,
           reply: reply,
         });
       } catch (error) {

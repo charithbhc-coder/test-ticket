@@ -20,7 +20,7 @@
         <ng-container matColumnDef="teamsUserName">
           <th mat-header-cell *matHeaderCellDef> User </th>
           <td mat-cell *matCellDef="let element">
-            <div style="font-weight: 600;">{{element.teamsUserName}}</div>
+            <div style="font-weight: 600;">{{element.senderEmail || element.teamsUserName}}</div>
           </td>
         </ng-container>
 

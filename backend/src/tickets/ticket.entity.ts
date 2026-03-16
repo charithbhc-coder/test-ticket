@@ -14,6 +14,18 @@ export class Ticket {
   @Column()
   teamsUserName: string;
 
+  @Column({ nullable: true })
+  senderEmail: string;
+
+  @Column({ nullable: true })
+  messageId: string;
+
+  @Column({ nullable: true })
+  channelId: string;
+
+  @Column({ nullable: true })
+  teamId: string;
+
   @Column({ default: 'OPEN' })
   status: string;
 

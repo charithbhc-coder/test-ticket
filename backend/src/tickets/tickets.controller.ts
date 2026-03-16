@@ -11,8 +11,20 @@ export class TicketsController {
     @Body('message') message: string,
     @Body('teamsUserId') teamsUserId: string,
     @Body('teamsUserName') teamsUserName: string,
+    @Body('senderEmail') senderEmail?: string,
+    @Body('messageId') messageId?: string,
+    @Body('channelId') channelId?: string,
+    @Body('teamId') teamId?: string,
   ) {
-    return this.ticketsService.createTicket(message, teamsUserId, teamsUserName);
+    return this.ticketsService.createTicket(
+      message,
+      teamsUserId,
+      teamsUserName,
+      senderEmail,
+      messageId,
+      channelId,
+      teamId,
+    );
   }
 
   @Get()

@@ -6,6 +6,7 @@ export interface Ticket {
   id: number;
   message: string;
   teamsUserName: string;
+  senderEmail?: string;
   status: string;
   reply: string | null;
 }
